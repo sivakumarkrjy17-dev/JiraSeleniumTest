@@ -17,7 +17,7 @@ public class LoginTest extends BaseTest {
 	@JiraPolicy(logTicketReady=true)
 	@Test(priority=2)
 	public void verifyLoginPageErrorTest() {
-		String errorText = loginPage.doErrorLogin("sivak@gmail.com");
+		String errorText = loginPage.doErrorLogin("mymailacc@gmail.com");
 		System.out.println("error Text : "+errorText);
 		try {
 			Thread.sleep(1000);
