@@ -12,5 +12,5 @@
 		<classes>
 			<class name="com.MyTests.LoginTest" />
 		</classes>
-	</test> <!-- Test -->
-</suite> <!-- Suite -->
+	</test> 
+</suite>

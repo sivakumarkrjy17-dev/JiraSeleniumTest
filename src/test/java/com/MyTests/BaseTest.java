@@ -8,8 +8,6 @@ import org.testng.annotations.Parameters;
 
 import com.MyPages.LoginPage;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
 public class BaseTest {
 	
 	public WebDriver driver;
@@ -20,7 +18,6 @@ public class BaseTest {
 	public void setupTest(String browser) {
 		
 		if(browser.equals("chrome")) {
-			//WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 		}
 		
@@ -28,7 +25,6 @@ public class BaseTest {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		loginPage = new LoginPage(this.driver);

@@ -1,28 +1,16 @@
 package com.listeners;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import com.MyPages.BasePage;
-
+import com.util.ConfigReader;
 import com.util.JiraPolicy;
 import com.util.JiraServiceProvider;
 
 public class TestJiraListener implements ITestListener {
-
-//	public TestJiraListener() {
-//		super();
-//		// TODO Auto-generated constructor stub
-//	}
-//	
-//	
-//	public TestJiraListener(WebDriver driver) {
-//		super(driver);
-//		// TODO Auto-generated constructor stub
-//	}
 
 	@Override
 	public void onTestStart(ITestResult result) {
@@ -46,11 +34,12 @@ public class TestJiraListener implements ITestListener {
 			// raise jira ticket:
 			System.out.println("is ticket ready for JIRA: " + isTicketReady);
 
-			String pwdToken = "ATATT3xFfGF0iTnDnNDU1zaFVdiOYY1fFBaL2a2CQxLaH0A_-k5bUY1Gl7_yfP8tTRRUw9xETznznNO8T50YAmVDSbphIehpPCtIGYDpG90E40lvm4CKEaBhL5fmL0LGD2mM6tRAPtj2Cd8O5h_bBVnqk8VlcRP5eHdHYV_adg0uxmqBdLxJnsw=71858DF9";
-			JiraServiceProvider jiraSp = new JiraServiceProvider("https://jiramyacc.atlassian.net/",
-					"jiramyacc@gmail.com", pwdToken, "SCRUM");
+			JiraServiceProvider jiraSp = new JiraServiceProvider(ConfigReader.getProperty("jiraUrl"),
+					                                             ConfigReader.getProperty("jiraMailId"), 
+					                                             ConfigReader.getProperty("jiraToken"), 
+					                                             ConfigReader.getProperty("project"));
 			String issueSummary = result.getMethod().getConstructorOrMethod().getMethod().getName()
-					+ "got failed due to some assertion or exception";
+					+ " - Failed due to some assertion or exception";
 			String issueDescription = result.getThrowable().getMessage() + "\n";
 			issueDescription.concat(ExceptionUtils.getFullStackTrace(result.getThrowable()));
 

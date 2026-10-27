@@ -20,13 +20,9 @@ public class BasePage {
 	static WebDriver driver;
 	WebDriverWait wait;
 
-//	public BasePage() {
-//		
-//	}
-
 	public BasePage(WebDriver driver) {
-		this.driver = driver;
-		this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(15));
+		BasePage.driver = driver;
+		this.wait = new WebDriverWait(BasePage.driver, Duration.ofSeconds(15));
 	}
 
 	public String getPageTitle() {

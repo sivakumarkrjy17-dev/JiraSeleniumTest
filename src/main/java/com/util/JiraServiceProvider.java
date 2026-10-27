@@ -1,8 +1,6 @@
 package com.util;
 
 import java.io.File;
-import java.util.Arrays;
-
 import net.rcarz.jiraclient.BasicCredentials;
 import net.rcarz.jiraclient.Field;
 import net.rcarz.jiraclient.Issue;
@@ -27,10 +25,9 @@ public class JiraServiceProvider {
 			FluentCreate fleuntCreate = jira.createIssue(project, issueType);
 			fleuntCreate.field(Field.SUMMARY, summary);
 			fleuntCreate.field(Field.DESCRIPTION, description);
-//			fleuntCreate.field(Field.ATTACHMENT, Arrays.asList(screenshotPath));
 			Issue newIssue = fleuntCreate.execute();
 			
-			// 3. Upload the screenshot to the newly created issue
+			//Upload the screenshot to the newly created issue
 			File screenshotFile = new File(screenshotPath);
 			if (screenshotFile.exists()) {
 			    newIssue.addAttachment(screenshotFile);
